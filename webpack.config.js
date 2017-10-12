@@ -6,7 +6,7 @@ module.exports = {
   // IN/OUT files
   entry: [
     `webpack-dev-server/client?http://localhost:${PORT}`,
-    path.resolve(__dirname, 'src/app.js')
+    path.resolve(__dirname, 'src')
   ],
   output: {
     path: path.resolve(__dirname, 'public'),
