@@ -1,4 +1,4 @@
 import './style.scss';
 
 
-console.log('sdfsdf');
+console.log('[webpack works!]');

@@ -1,11 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const PORT = 3000;
+const config = require("./config");
 
 module.exports = {
   // IN/OUT files
   entry: [
-    `webpack-dev-server/client?http://localhost:${PORT}`,
+    `webpack-dev-server/client?http://localhost:${config.port}`,
     path.resolve(__dirname, 'src')
   ],
   output: {
@@ -36,7 +36,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     inline: true,
-    port: PORT,
+    port: config.port,
     historyApiFallback: {
       index: '/index.html'
     }
