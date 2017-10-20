@@ -1,4 +1,4 @@
 import './style.scss';
 
 
-console.log('[webpack works!]');
+console.log('[webpack is setup!]');

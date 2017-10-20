@@ -1,3 +1,20 @@
-body {
-  background-color: rgb(126, 229, 126);
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body,
+window {
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(35, 122, 191);
+  font-family: 'Roboto', sans-serif;
+}
+
+#welcome-message {
+  text-align: center;
+  color: white;
+}
+
+#webpack-logo {
+  display: block;
+  margin: 0 auto;
+  margin-top: 60px;
+  height: 200px;
 }
