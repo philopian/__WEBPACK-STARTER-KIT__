@@ -51,6 +51,7 @@ module.exports = {
       { test: /\.css$/, use: [{ loader: "style-loader" }, { loader: "css-loader" }] },
       { test: /\.scss$/, use: [{ loader: "style-loader" }, { loader: "css-loader" }, { loader: "sass-loader" }] },
       { test: /\.js$/, exclude: /(node_modules|bower_components)/, use: { loader: 'babel-loader', options: { presets: ['env'] } } },
+      { test: /\.jsx$/, include: path.join(__dirname, 'src'), loader: 'babel-loader' },
       { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=images/[name].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'file-loader' }] },
       { test: /\.(woff|woff2)$/, use: [{ loader: 'url-loader?prefix=font/&limit=5000' }] },
