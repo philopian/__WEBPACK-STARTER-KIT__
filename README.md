@@ -10,7 +10,6 @@
 
 
 # Build for deployment
-- to build
   ~~~
     $ npm run build -s
   ~~~
