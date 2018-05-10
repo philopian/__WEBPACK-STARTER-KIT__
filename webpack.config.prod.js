@@ -6,9 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSASS = new ExtractTextPlugin('code/app.css');
 
 module.exports = {
+  mode: "production",
+
   // IN/OUT files
   entry: [
-    path.resolve(__dirname, 'src')
+    path.resolve(__dirname, 'www')
   ],
   output: {
     path: path.resolve(__dirname, config.distFileName),
@@ -27,7 +29,7 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: 'www/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

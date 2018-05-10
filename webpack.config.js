@@ -3,13 +3,14 @@ const webpack = require('webpack');
 const config = require("./config");
 
 module.exports = {
+  mode: "development",
   // IN/OUT files
   entry: [
     `webpack-dev-server/client?http://localhost:${config.port}`,
-    path.resolve(__dirname, 'src')
+    path.resolve(__dirname, 'www')
   ],
   output: {
-    path: path.resolve(__dirname, 'public'),
+    // path: path.resolve(__dirname, 'www'),
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -41,7 +42,7 @@ module.exports = {
 
   // WEBPACK-DEV-SERVER
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, 'www'),
     inline: true,
     port: config.port,
     historyApiFallback: {

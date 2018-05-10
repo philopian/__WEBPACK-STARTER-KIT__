@@ -2,8 +2,8 @@ var path = require("path");
 module.exports = {
   port: 8080,
   appRoot: __dirname,
-  webRoot: path.join(__dirname, "./src"),
-  publicRoot: path.join(__dirname, "./public"),
+  webRoot: path.join(__dirname, "./www"),
+  publicRoot: path.join(__dirname, "./www"),
 
   distFileName: "DEPLOY",
   deployRoot: path.join(__dirname, "DEPLOY"),
