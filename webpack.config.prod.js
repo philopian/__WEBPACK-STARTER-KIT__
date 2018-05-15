@@ -44,24 +44,22 @@ module.exports = {
       },
       inject: false
     }),
-    extractSASS,
-    // new webpack.optimize.UglifyJsPlugin(),
+    extractSASS
   ],
 
   // LOADERS
   module: {
     rules: [
-      { test: /\.css$/, use: [{ loader: "style-loader" }, { loader: "css-loader" }] },
-      { test: /\.scss$/, use: [{ loader: "style-loader" }, { loader: "css-loader" }, { loader: "sass-loader" }] },
-      { test: /\.js$/, exclude: /(node_modules|bower_components)/, use: { loader: 'babel-loader', options: { presets: ['env'] } } },
-      { test: /\.jsx$/, include: path.join(__dirname, 'src'), loader: 'babel-loader' },
-      { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=images/[name].[ext]' },
+      { test: /\.html$/, use: [{ loader: 'html-loader', options: { minimize: true }, }], },
+      { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader','sass-loader'], },
+      { test: /\.(js|jsx)$/,include: config.webRoot,loader: require.resolve("babel-loader"),options: {babelrc: false,presets: [require("babel-preset-env"),require("babel-preset-react"),require("babel-preset-stage-2")]}},
+      { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[path][name].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'file-loader' }] },
       { test: /\.(woff|woff2)$/, use: [{ loader: 'url-loader?prefix=font/&limit=5000' }] },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'url-loader?limit=10000&mimetype=application/octet-stream' }] },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'url-loader?limit=10000&mimetype=image/svg+xml' }] },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'url-loader?limit=10000&mimetype=image/svg+xml' }] }
     ]
-  }
+  },
 
 
 }

@@ -8,7 +8,6 @@ module.exports = {
   // IN/OUT files
   entry: [
     require.resolve('babel-polyfill'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
     `webpack-dev-server/client?http://localhost:${config.port}`,
     path.resolve(__dirname, 'www')
   ],
@@ -31,9 +30,8 @@ module.exports = {
   module: {
     rules: [
       { test: /\.html$/, use: [{ loader: 'html-loader', options: { minimize: true }, }], },
-      { test: /\.scss$/, use: ['style-loader', 'css-loader','sass-loader'], },
-      { test: /\.js$/, exclude: [/node_modules/, /bower_components/], use: [{ loader: 'babel-loader' }], },
-      { test: /\.jsx$/, include: path.join(__dirname, 'src'), loader: 'babel-loader' },
+      { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader','sass-loader'], },
+      { test: /\.(js|jsx)$/,include: config.webRoot,loader: require.resolve("babel-loader"),options: {babelrc: false,presets: [require("babel-preset-env"),require("babel-preset-react"),require("babel-preset-stage-2")]}},
       { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[path][name].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'file-loader' }] },
       { test: /\.(woff|woff2)$/, use: [{ loader: 'url-loader?prefix=font/&limit=5000' }] },
