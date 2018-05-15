@@ -4,13 +4,15 @@ const config = require("./config");
 
 module.exports = {
   mode: "development",
+  
   // IN/OUT files
   entry: [
+    require.resolve('babel-polyfill'),
+    require.resolve('react-dev-utils/webpackHotDevClient'),
     `webpack-dev-server/client?http://localhost:${config.port}`,
     path.resolve(__dirname, 'www')
   ],
   output: {
-    // path: path.resolve(__dirname, 'www'),
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -29,7 +31,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.html$/, use: [{ loader: 'html-loader', options: { minimize: true }, }], },
-      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'], },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader','sass-loader'], },
       { test: /\.js$/, exclude: [/node_modules/, /bower_components/], use: [{ loader: 'babel-loader' }], },
       { test: /\.jsx$/, include: path.join(__dirname, 'src'), loader: 'babel-loader' },
       { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[path][name].[ext]' },
@@ -43,7 +45,9 @@ module.exports = {
   // WEBPACK-DEV-SERVER
   devServer: {
     contentBase: path.join(__dirname, 'www'),
+    hot: true,
     inline: true,
+    quiet: true,
     port: config.port,
     historyApiFallback: {
       index: '/index.html'

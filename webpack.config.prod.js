@@ -10,6 +10,7 @@ module.exports = {
 
   // IN/OUT files
   entry: [
+    require.resolve('babel-polyfill'),
     path.resolve(__dirname, 'www')
   ],
   output: {

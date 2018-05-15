@@ -1,4 +1,3 @@
-import './sass/style.scss';
+import "./sass/style.scss";
 
-
-console.log('[webpack is setup!]');
+console.log("[webpack is setup!]");

@@ -8,14 +8,14 @@
     "*.geojson": "json"
   },
   "files.exclude": {
-    "**/.gitignore": false,
-    "**/.eslintrc": true,
-    "**/.eslintignore": true,
-    "**/.prettierignore": true,
-    "**/postcss.config.js": true,
-    "**/yarn.lock": true,
-    "**/.babelrc": true,
-    "**/.bowerrc": true
+    // "**/.gitignore": false,
+    // "**/.eslintrc": true,
+    // "**/.eslintignore": true,
+    // "**/.prettierignore": true,
+    // "**/postcss.config.js": true,
+    // "**/yarn.lock": true,
+    // "**/.babelrc": true,
+    // "**/.bowerrc": true
   },
 
   // Update icons in the vscode file explorer
