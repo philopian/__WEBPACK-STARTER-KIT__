@@ -25,10 +25,16 @@
   $ npm run appseed new reducer
 ```
 
+# Test with Jest
+
+```bash
+  $ npm test -s
+```
+
 # Golbal NPM Packages Tools
 
 - didn't want to bundle this up cause people might have their own preferences
 
-```text
+```bash
   $ npm i -g  eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import
 ```
