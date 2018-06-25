@@ -6,7 +6,7 @@ const inquirer = require("inquirer");
 const _ = require("lodash");
 
 // Ask questions
-const cmdPrompt = ()=> {
+const cmdPrompt = () => {
   inquirer
     .prompt([
       //
@@ -18,9 +18,12 @@ const cmdPrompt = ()=> {
         filter: function(val) {
           return {
             input: val,
-            titleCase: (val.indexOf(" ") > -1) ? _.startCase(_.toLower(val))
-              .split(" ")
-              .join("") : _.startCase(val).replace(" ",""),
+            titleCase:
+              val.indexOf(" ") > -1
+                ? _.startCase(_.toLower(val))
+                    .split(" ")
+                    .join("")
+                : _.startCase(val).replace(" ", ""),
             kebabCase: _.kebabCase(val)
           };
         }
@@ -49,7 +52,10 @@ const cmdPrompt = ()=> {
       if (fs.existsSync(paths.componentsDir)) {
         //  Check to see if there is a ./www/react/components/<component-name> folder
         if (!fs.existsSync(paths.newComponentDir)) {
-          console.log(chalk.black.bgBlue('[new component will live here:]'), paths.newComponentDir);
+          console.log(
+            chalk.black.bgBlue("[new component will live here:]"),
+            paths.newComponentDir
+          );
           // Make the component's dir
           fs.ensureDir(paths.newComponentDir, err => {
             if (err) return console.log(chalk.bgRed(err));
@@ -67,30 +73,40 @@ const cmdPrompt = ()=> {
             buildStyles(answers, paths);
             buildTest(answers, paths);
 
-            if (fs.existsSync(path.join(__dirname, "../../.storybook/config.js"))) {
-              buildStorybook(answers, paths);  
+            if (
+              fs.existsSync(path.join(__dirname, "../../.storybook/config.js"))
+            ) {
+              buildStorybook(answers, paths);
               // Add the story to storybook
-              appendStoryToStorybook(fs.realpathSync(process.cwd()), answers.componentName.titleCase)
+              appendStoryToStorybook(
+                fs.realpathSync(process.cwd()),
+                answers.componentName.titleCase
+              );
             }
-
           });
         } else {
-          console.log(chalk.bgRed("[Error] It seems like you already have a component with that name"));
+          console.log(
+            chalk.bgRed(
+              "[Error] It seems like you already have a component with that name"
+            )
+          );
         }
       } else {
-        console.log(chalk.bgRed("[Error] There doesn't seem to be a 'components' folder at ./www/react/components/"));
+        console.log(
+          chalk.bgRed(
+            "[Error] There doesn't seem to be a 'components' folder at ./www/react/components/"
+          )
+        );
       }
     });
 };
-
-
 
 const makeFile = (filePath, fileContents, fileName) => {
   fs.writeFile(filePath, fileContents, "utf8", err => {
     if (err) return console.log(chalk.bgRed(err));
     // console.log(chalk.bgCyan(`[File created] ${fileName}`));
   });
-}
+};
 
 const updateFileContents = (filePath, oldSnippet, newSnippet, message) => {
   return new Promise((resolve, reject) => {
@@ -102,7 +118,7 @@ const updateFileContents = (filePath, oldSnippet, newSnippet, message) => {
       resolve();
     });
   });
-}
+};
 
 const appendStoryToStorybook = (rootDir, componentName) => {
   path.join(rootDir, ".storybook/config.js");
@@ -117,19 +133,21 @@ const appendStoryToStorybook = (rootDir, componentName) => {
     newSnippet,
     "[story added to storybook]"
   );
-}
+};
 
 const buildJsx = (opts, paths) => {
-  const filepath = path.join(paths.newComponentDir, `${opts.componentName.titleCase}.jsx`);
+  const filepath = path.join(
+    paths.newComponentDir,
+    `${opts.componentName.titleCase}.jsx`
+  );
   const fileName = `${opts.componentName.titleCase}`;
   const fileContents = `import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Wrapper } from "./styles.js";
 
 class ${opts.componentName.titleCase} extends Component {
-  constructor(props) {
-    super(props);
-  }
+  state = {}
+  
   render() {
     return (
       <div className="my-component">
@@ -155,7 +173,9 @@ export default ${opts.componentName.titleCase};
 const buildIndex = (opts, paths) => {
   const filepath = path.join(paths.newComponentDir, "index.js");
   const fileName = "index.js";
-  const fileContents = `import ${opts.componentName.titleCase} from "./${opts.componentName.titleCase}.jsx";
+  const fileContents = `import ${opts.componentName.titleCase} from "./${
+    opts.componentName.titleCase
+  }.jsx";
 export default ${opts.componentName.titleCase};`;
   makeFile(filepath, fileContents, fileName);
 };
@@ -241,7 +261,6 @@ describe("Addition", () => {
 });`;
   makeFile(filepath, fileContents, fileName);
 };
-
 
 ///
 

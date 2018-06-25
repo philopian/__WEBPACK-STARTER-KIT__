@@ -21,12 +21,11 @@ console.log(
 );
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 // Check for ./appseed.config.js"
 let BAIL = false;
 const pathAppSeedConfig = path.join(appDirectory, "appseed.config.js");
 if (!fs.existsSync(pathAppSeedConfig)) {
-  console.log(chalk.bgRed('[Missing File] '), ` -> ${pathAppSeedConfig}`);
+  console.log(chalk.bgRed("[Missing File] "), ` -> ${pathAppSeedConfig}`);
   BAIL = true;
 }
 
@@ -43,80 +42,62 @@ if (!fs.existsSync(pathContainersFolder)) BAIL_NO_CONTAINERS = true;
 // Check for ./react/pages/
 let BAIL_NO_PAGES = false;
 const pathPagesFolder = path.join(appDirectory, "www/react/pages");
-if (!fs.existsSync(pathPagesFolder))   BAIL_NO_PAGES = true;
+if (!fs.existsSync(pathPagesFolder)) BAIL_NO_PAGES = true;
 
 // Check for ./react/pages/
 let BAIL_NO_REDUCERS = false;
 const pathReducersFolder = path.join(appDirectory, "www/react/reducers");
-if (!fs.existsSync(pathReducersFolder))   BAIL_NO_PAGES = true;
+if (!fs.existsSync(pathReducersFolder)) BAIL_NO_PAGES = true;
 
 // Check for ./.storybook/config.js
 let BAIL_NO_STORYBOOK = false;
 const pathStorybookconfig = path.join(appDirectory, ".storybook/config.js");
 if (!fs.existsSync(pathStorybookconfig)) BAIL_NO_STORYBOOK = true;
 
+// console.log(`
+//      BAIL ->${BAIL}
+//      argv ->${JSON.stringify(argv)}
+//      BAIL_NO_COMPONENTS -> ${BAIL_NO_COMPONENTS}
+//      BAIL_NO_CONTAINERS -> ${BAIL_NO_CONTAINERS}
+//      BAIL_NO_PAGES -> ${BAIL_NO_PAGES}
+//      BAIL_NO_STORYBOOK -> ${BAIL_NO_STORYBOOK}
+// `);
 
-console.log(`
-     BAIL ->${BAIL}
-     argv ->${JSON.stringify(argv)}
-     BAIL_NO_COMPONENTS -> ${BAIL_NO_COMPONENTS}
-     BAIL_NO_CONTAINERS -> ${BAIL_NO_CONTAINERS}
-     BAIL_NO_PAGES -> ${BAIL_NO_PAGES}
-     BAIL_NO_STORYBOOK -> ${BAIL_NO_STORYBOOK}
-`);
-
-
-
-///*
-
-
-if (argv.includes("new")  && argv.includes("component") ) {
+if (argv.includes("new") && argv.includes("component")) {
   if (!BAIL_NO_COMPONENTS) {
-    console.log('[NEW component]');
     // Show prompt for new component
     newComponent();
-    
   } else {
-    console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathComponentsFolder}`);
+    console.log(chalk.bgRed("[Missing Folder]"), ` -> ${pathComponentsFolder}`);
   }
 }
-            
-            // if (argv.includes("new") && argv.includes("container") ) {
-            //   if (!BAIL_NO_CONTAINERS) {
-            //     console.log('[NEW container]');
-            //     // Show prompt for new container
-            //     newContainer();
-            //   }else {
-            //     console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathContainersFolder}`);
-            //   }
-            // }
-  
-  // TODO: make new pages workflow
-  // if (argv.includes("new") && argv.includes("page") ) {
-  //   if (!BAIL_NO_CONTAINERS) {
-  //     console.log('[NEW page]');
-  //     // newPages();
-  //   }else {
-  //     console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathPagesFolder}`);
-  //   }
-  // }
-    
 
-  
-  //     // Show prompt for new reducer
-  // if (argv.includes("new")  && argv.includes("reducer") ) {
-  //   console.log('[NEW reducer]');
-  //   // Show prompt for new reducer
-  //   newReducer();
-  // } else {
-  //   console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathStorybookconfig}`);
-  // }
-  
-  
-  
+if (argv.includes("new") && argv.includes("container")) {
+  if (!BAIL_NO_CONTAINERS) {
+    // Show prompt for new container
+    newContainer();
+  } else {
+    console.log(chalk.bgRed("[Missing Folder]"), ` -> ${pathContainersFolder}`);
+  }
+}
 
+// TODO: make new pages workflow
+// if (argv.includes("new") && argv.includes("page") ) {
+//   if (!BAIL_NO_CONTAINERS) {
+//     console.log('[NEW page]');
+//     // newPages();
+//   }else {
+//     console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathPagesFolder}`);
+//   }
+// }
 
-
-
+//     // Show prompt for new reducer
+// if (argv.includes("new")  && argv.includes("reducer") ) {
+//   console.log('[NEW reducer]');
+//   // Show prompt for new reducer
+//   newReducer();
+// } else {
+//   console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathStorybookconfig}`);
+// }
 
 //*/

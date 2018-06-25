@@ -3,5 +3,7 @@
 !tests/**/*.js
 !server/**/*.js
 !tools/**/*.js
+!firebase/**/*.js
 webpack.config.*
 package.json
+.babelrc

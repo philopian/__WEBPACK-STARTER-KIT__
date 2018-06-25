@@ -183,7 +183,9 @@ export const ${opts.actionCreator} = newData => {
 
 const buildReducerIndex = (opts, paths) => {
   const filepath = path.join(paths.reducerIndexFile);
-  const fileContents = `import { ${opts.actionType} } from "../../actions/action-types";
+  const fileContents = `import { ${
+    opts.actionType
+  } } from "../../actions/action-types";
 
 export default (state = ${opts.initialValue}, action) => {
   switch (action.type) {
@@ -205,8 +207,7 @@ const appendActionTypes = (opts, paths) => {
 */
 export const ${opts.actionType} = "${opts.actionType}";`;
 
-console.log('\n\n\n\n', filepath);
-
+  console.log("\n\n\n\n", filepath);
 
   appendTextToFile(filepath, fileContents, "reducer/<>/index.js");
 };
@@ -215,7 +216,9 @@ const appendToCombineReducers = (opts, paths) => {
   const filepath = path.join(paths.reducersFile);
   // const oldSnippet = /export default combineReducers\({/;
   const oldSnippet = "export default combineReducers({";
-  const newSnippet = `import ${opts.reducerName.camelCase} from "./${opts.reducerName.kebabCase}";
+  const newSnippet = `import ${opts.reducerName.camelCase} from "./${
+    opts.reducerName.kebabCase
+  }";
 export default combineReducers({
   ${opts.reducerName.camelCase},`;
 
