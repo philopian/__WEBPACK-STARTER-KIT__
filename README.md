@@ -15,7 +15,19 @@
   $ npm run build -s
 ```
 
-# Extra Tools
+# New components/containers/reducers
+
+- Quick way to scafold new react components/reducers
+
+```
+  $ npm appseed new component
+  $ npm appseed new container
+  $ npm appseed new reducer
+```
+
+# Golbal NPM Packages Tools
+
+- didn't want to bundle this up cause people might have their own preferences
 
 ```text
   $ npm i -g  eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import
