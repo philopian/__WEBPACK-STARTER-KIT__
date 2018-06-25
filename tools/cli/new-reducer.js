@@ -80,8 +80,6 @@ const cmdPrompt = () => {
       }
     ])
     .then(answers => {
-      console.log("[answers]", answers);
-
       const paths = {
         actionFile: path.join(
           fs.realpathSync(process.cwd()),
@@ -89,7 +87,7 @@ const cmdPrompt = () => {
         ),
         actionTypesFile: path.join(
           fs.realpathSync(process.cwd()),
-          "www/react/actions/action-types.js"
+          "www/react/actions/types.js"
         ),
         reducerFolder: path.join(
           fs.realpathSync(process.cwd()),
@@ -107,7 +105,6 @@ const cmdPrompt = () => {
           "www/react/reducers/index.js"
         )
       };
-      console.log("\n\n", paths);
 
       // Check to see if there is a components folder (./www/react/components/)
       if (!fs.existsSync(paths.actionFile)) {
@@ -162,13 +159,13 @@ const updateFileContents = (filePath, oldSnippet, newSnippet, message) => {
 const appendTextToFile = (filePath, fileContents, fileName) => {
   fs.appendFile(filePath, fileContents, err => {
     if (err) throw err;
-    console.log("[appended] " + fileName);
+    // console.log("[appended] " + fileName);
   });
 };
 
 const buildActions = (opts, paths) => {
   const filepath = path.join(paths.actionFile);
-  const fileContents = `import { ${opts.actionType} } from "./action-types";
+  const fileContents = `import { ${opts.actionType} } from "./types";
 
 export const ${opts.actionCreator} = newData => {
   return dispatch => {
@@ -185,7 +182,7 @@ const buildReducerIndex = (opts, paths) => {
   const filepath = path.join(paths.reducerIndexFile);
   const fileContents = `import { ${
     opts.actionType
-  } } from "../../actions/action-types";
+  } } from "../../actions/types";
 
 export default (state = ${opts.initialValue}, action) => {
   switch (action.type) {
@@ -207,7 +204,7 @@ const appendActionTypes = (opts, paths) => {
 */
 export const ${opts.actionType} = "${opts.actionType}";`;
 
-  console.log("\n\n\n\n", filepath);
+  // console.log("\n\n\n\n", filepath);
 
   appendTextToFile(filepath, fileContents, "reducer/<>/index.js");
 };

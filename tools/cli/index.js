@@ -10,15 +10,15 @@ const newComponent = require("./new-component");
 const newContainer = require("./new-container");
 const newReducer = require("./new-reducer");
 
-console.log(
-  "",
-  chalk.black.bgBlue.bold("Command:"),
-  " $ appseed new\n",
-  chalk.black.bgBlue.bold("Application Root:"),
-  ` ${appDirectory}\n`,
-  chalk.black.bgBlue.bold("Argument:"),
-  ` ${argv}\n`
-);
+// console.log(
+//   "",
+//   chalk.black.bgBlue.bold("Command:"),
+//   " $ appseed new\n",
+//   chalk.black.bgBlue.bold("Application Root:"),
+//   ` ${appDirectory}\n`,
+//   chalk.black.bgBlue.bold("Argument:"),
+//   ` ${argv}\n`
+// );
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Check for ./appseed.config.js"
@@ -44,16 +44,29 @@ let BAIL_NO_PAGES = false;
 const pathPagesFolder = path.join(appDirectory, "www/react/pages");
 if (!fs.existsSync(pathPagesFolder)) BAIL_NO_PAGES = true;
 
-// Check for ./react/pages/
-let BAIL_NO_REDUCERS = false;
-const pathReducersFolder = path.join(appDirectory, "www/react/reducers");
-if (!fs.existsSync(pathReducersFolder)) BAIL_NO_PAGES = true;
-
 // Check for ./.storybook/config.js
 let BAIL_NO_STORYBOOK = false;
 const pathStorybookconfig = path.join(appDirectory, ".storybook/config.js");
 if (!fs.existsSync(pathStorybookconfig)) BAIL_NO_STORYBOOK = true;
 
+// Check for ./react/pages/
+let BAIL_NO_REDUCERS = false;
+const pathReducersFolder = path.join(appDirectory, "www/react/reducers");
+if (!fs.existsSync(pathReducersFolder)) BAIL_NO_REDUCERS = true;
+const pathActionsFolder = path.join(appDirectory, "www/react/actions");
+if (!fs.existsSync(pathActionsFolder)) BAIL_NO_REDUCERS = true;
+const pathActionsTypefile = path.join(
+  appDirectory,
+  "www/react/actions/types.js"
+);
+if (!fs.existsSync(pathActionsTypefile)) BAIL_NO_REDUCERS = true;
+const pathReducersIndex = path.join(
+  appDirectory,
+  "www/react/reducers/index.js"
+);
+if (!fs.existsSync(pathReducersIndex)) BAIL_NO_REDUCERS = true;
+
+//////////////////////////////////////////////////////
 // console.log(`
 //      BAIL ->${BAIL}
 //      argv ->${JSON.stringify(argv)}
@@ -68,7 +81,10 @@ if (argv.includes("new") && argv.includes("component")) {
     // Show prompt for new component
     newComponent();
   } else {
-    console.log(chalk.bgRed("[Missing Folder]"), ` -> ${pathComponentsFolder}`);
+    console.log(
+      chalk.bgRed("[Missing Folder]"),
+      ` -> ${pathComponentsFolder.replace(appDirectory, "")}`
+    );
   }
 }
 
@@ -77,7 +93,10 @@ if (argv.includes("new") && argv.includes("container")) {
     // Show prompt for new container
     newContainer();
   } else {
-    console.log(chalk.bgRed("[Missing Folder]"), ` -> ${pathContainersFolder}`);
+    console.log(
+      chalk.bgRed("[Missing Folder]"),
+      ` -> ${pathContainersFolder.replace(appDirectory, "")}`
+    );
   }
 }
 
@@ -91,13 +110,22 @@ if (argv.includes("new") && argv.includes("container")) {
 //   }
 // }
 
-//     // Show prompt for new reducer
-// if (argv.includes("new")  && argv.includes("reducer") ) {
-//   console.log('[NEW reducer]');
-//   // Show prompt for new reducer
-//   newReducer();
-// } else {
-//   console.log(chalk.bgRed('[Missing Folder]'), ` -> ${pathStorybookconfig}`);
-// }
+// Show prompt for new reducer
+if (argv.includes("new") && argv.includes("reducer")) {
+  if (!BAIL_NO_REDUCERS) {
+    // Show prompt for new reducer
+    newReducer();
+  } else {
+    console.log(
+      chalk.bgRed("[Missing Folder]"),
+      ` .${pathReducersFolder.replace(appDirectory, "")}
+              or  .${pathActionsFolder.replace(appDirectory, "")}
+         or file .${pathActionsTypefile.replace(appDirectory, "")}.js
+         or file .${pathReducersIndex.replace(appDirectory, "")}.js
+
+`
+    );
+  }
+}
 
 //*/

@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 
 import Root from "./react/Root.jsx";
-import "./sass/style.scss";
+import "./sass/global.scss";
 
 console.log("[webpack is setup!]");
 
