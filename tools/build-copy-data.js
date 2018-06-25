@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const config = require('../config');
+const config = require('../appseed.config');
 const copydir = require('copy-dir');
 
 

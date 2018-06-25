@@ -27,8 +27,33 @@
       "format": "svg"
     },
     {
+      "icon": "webpack",
+      "extensions": ["webpack.config.extra.js"],
+      "filename": true,
+      "format": "svg"
+    },
+    {
+      "icon": "storybook",
+      "extensions": ["storybook.js"],
+      "filename": true,
+      "format": "svg"
+    },
+    {
+      "icon": "test",
+      "extensions": ["test.js"],
+      "filename": true,
+      "format": "svg"
+    },
+    {
       "icon": "docker",
-      "extensions": ["docker", "*.docker"],
+      "extensions": [".docker"],
+      "filename": true,
+      "format": "svg"
+    },
+    {
+      "icon": "style",
+      "extensions": ["styles.js"],
+      "filename": true,
       "format": "svg"
     }
   ],

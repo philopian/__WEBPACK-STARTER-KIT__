@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const config = require("./config");
+const config = require("./appseed.config");
 
 module.exports = {
   mode: "development",

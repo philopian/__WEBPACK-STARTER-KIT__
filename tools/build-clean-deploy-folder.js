@@ -1,6 +1,6 @@
 const path = require('path');
 const rimraf = require('rimraf');
-const config = require('../config');
+const config = require('../appseed.config');
 
 // Cleanup
 rimraf(config.deployRoot, function() {

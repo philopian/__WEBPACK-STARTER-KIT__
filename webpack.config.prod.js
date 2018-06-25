@@ -1,5 +1,5 @@
 const path = require('path');
-const config = require('./config');
+const config = require('./appseed.config');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');

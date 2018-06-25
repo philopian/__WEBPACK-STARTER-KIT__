@@ -1,4 +1,4 @@
-import config from "../config";
+import config from "../appseed.config";
 const open = require("open");
 
 console.log("..opening the browser");
