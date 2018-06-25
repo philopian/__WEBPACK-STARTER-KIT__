@@ -13,7 +13,8 @@
     "build": "NODE_ENV=production node_modules/.bin/webpack --progress -p --config webpack.config.prod.js",
     "postbuild": "node ./tools/build-copy-data",
     "open:browser": "node_modules/.bin/babel-node ./tools/open-browser",
-    "storybook": "start-storybook -p 8081 -c .storybook"
+    "storybook": "start-storybook -p 8081 -c .storybook",
+    "appseed": "node ./tools/cli"
   },
   "author": "Phil Willis <pdotwdot@gmail.com> (http://www.philwillis.pw/)",
   "license": "ISC",
