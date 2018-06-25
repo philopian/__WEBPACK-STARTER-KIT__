@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HiThere (Snapshot) HiThere renders without crashing 1`] = `
+<div
+  className="my-component"
+>
+  <div
+    className="sc-bdVaJa itNETs"
+  >
+    <h1>
+      hi there
+    </h1>
+    <p>
+      World
+    </p>
+  </div>
+</div>
+`;
