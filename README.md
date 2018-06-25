@@ -20,9 +20,9 @@
 - Quick way to scafold new react components/reducers
 
 ```
-  $ npm appseed new component
-  $ npm appseed new container
-  $ npm appseed new reducer
+  $ npm run appseed new component
+  $ npm run appseed new container
+  $ npm run appseed new reducer
 ```
 
 # Golbal NPM Packages Tools
