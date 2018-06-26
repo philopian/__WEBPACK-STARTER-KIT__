@@ -39,6 +39,10 @@
     $ yarn coverage
   ```
 
+## Debug with VSCode + Chrome
+
+- Click the Debugger icon in the left panel > choose the "[Frontend debug] Launch Chrome" option
+
 ## Build for deployment
 
 - Build your application for deployment
@@ -72,4 +76,4 @@
 
 - If you are using VSCode there are some files that are hidden so that the folder structure looks a little cleaner, if you want to show all or some open up the .vscode/settings.json and take a look under the "files.exclude"
 
-- There is a bower.json file if there are some dependencies that can't be found on npm??
+- There is a bower.json file for some dependencies that can't be found on npm
