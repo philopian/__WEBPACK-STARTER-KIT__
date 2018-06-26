@@ -1,40 +1,75 @@
-# Webpack Starter Kit
+# StarterKit
 
-- This is a very simple starter kit with webpack
-- It uses Webpack-dev-server so the bundle files will only be present during development
+- Dev/Test/Build web application with live-reloading on file save
+- Scafold additional react/redux features
 
-# Start Developing
+## Start Developing
 
-```
-  $ npm start -s
-```
+- Get started developing
 
-# Build for deployment
+  ```
+    $ npm start -s
+  or
+    $ yarn start
+  ```
 
-```
-  $ npm run build -s
-```
+## Develop components in isolation with Storybook
 
-# New components/containers/reducers
+- Get started developing
 
-- Quick way to scafold new react components/reducers
+  ```
+    $ npm run storybook -s
+  or
+    $ yarn storybook
+  ```
 
-```
-  $ npm run appseed new component
-  $ npm run appseed new container
-  $ npm run appseed new reducer
-```
+## Test with Jest
 
-# Test with Jest
+- Test your components with Jest
+  ```text
+    $ npm test -s
+  or
+    $ yarn test
+  ```
+- Create code coverage
 
-```bash
-  $ npm test -s
-```
+  ```text
+    $ npm run coverage -s
+    or
+    $ yarn coverage
+  ```
 
-# Golbal NPM Packages Tools
+## Build for deployment
 
-- didn't want to bundle this up cause people might have their own preferences
+- Build your application for deployment
+  ```
+    $ npm run build -s
+  or
+    $ yarn build
+  ```
 
-```bash
-  $ npm i -g  eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import
-```
+## Simple CLI to add scafold new features
+
+- Quick way to scafold new react components/containers/reducers
+
+  ```
+    $ npm run new component
+    $ npm run new container
+    $ npm run new reducer
+  or
+    $ yarn new component
+    $ yarn new container
+    $ yarn new reducer
+  ```
+
+# Additional info
+
+- Didn't want to bundle this up cause people might have their own preferences
+
+  ```text
+    $ npm i -g  eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import
+  ```
+
+- If you are using VSCode there are some files that are hidden so that the folder structure looks a little cleaner, if you want to show all or some open up the .vscode/settings.json and take a look under the "files.exclude"
+
+- There is a bower.json file if there are some dependencies that can't be found on npm??

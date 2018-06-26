@@ -14,7 +14,7 @@
     "postbuild": "node ./tools/build-copy-data",
     "open:browser": "node_modules/.bin/babel-node ./tools/open-browser",
     "storybook": "start-storybook -p 8081 -c .storybook",
-    "appseed": "node ./tools/cli",
+    "new": "node ./tools/cli",
     "test": "node .jest",
     "coverage": "node .jest/coverage"
   },
