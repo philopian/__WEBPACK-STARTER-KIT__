@@ -10,7 +10,7 @@ let jestConfig = require("./config");
 jestConfig.roots = [appDirectory];
 const jestCommand = [
   "--env=jsdom",
-  "--watchAll",
+  "--coverage",
   "--config",
   JSON.stringify(jestConfig)
 ];
