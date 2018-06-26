@@ -10,9 +10,37 @@ exports[`HiThere (Snapshot) HiThere renders without crashing 1`] = `
     <h1>
       hi there
     </h1>
-    <p>
+    <p
+      className="props-message"
+    >
       World
     </p>
+    <div
+      className="local-message"
+    >
+      <button
+        onClick={[Function]}
+      >
+        Click me!
+      </button>
+      <p
+        className="click-message"
+      >
+        
+      </p>
+    </div>
+    <div
+      className="parent-message"
+    >
+      <button>
+        Send Message to parent!
+      </button>
+      <p
+        className="click-message-for-parent"
+      >
+        
+      </p>
+    </div>
   </div>
 </div>
 `;
