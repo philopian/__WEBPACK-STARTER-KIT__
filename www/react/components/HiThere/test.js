@@ -1,10 +1,8 @@
 import React from "react";
 import Enzyme, { configure, shallow, mount, render } from "enzyme";
 import renderer from "react-test-renderer";
-import "raf/polyfill";
 import Adapter from "enzyme-adapter-react-16";
 import Component from "./index.js";
-import { log } from "util";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -74,7 +72,7 @@ describe("Shallow Render", () => {
     const component = shallow(<Component />);
 
     const _this = component.instance();
-    console.log(_this);
+    // console.log(_this);
     expect(_this.state).toEqual({
       clickCount: 0,
       clickMessage: "",
