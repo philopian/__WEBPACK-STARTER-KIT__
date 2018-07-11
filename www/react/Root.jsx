@@ -1,8 +1,14 @@
 //**************** REACT ***************
 import React, { Component } from "react";
+import HelloContainer from "./containers/HelloContainer";
+
 class Root extends Component {
   render() {
-    return <div>Hello React</div>;
+    return (
+      <div>
+        <HelloContainer />
+      </div>
+    );
   }
 }
 export default Root;

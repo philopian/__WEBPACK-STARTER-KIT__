@@ -8,21 +8,21 @@
     "*.geojson": "json"
   },
   "files.exclude": {
-    "**/.gitignore": false,
-    "**/.eslintrc": true,
-    "**/.eslintignore": true,
-    "**/.prettierignore": true,
-    "**/postcss.config.js": true,
-    "**/.babelrc": true,
-    "**/.bowerrc": true,
-    "**/.jest": true,
-    "**/webpack.config*": true,
-    "logs": true,
-    "*.log": true,
-    "npm-debug.log*": true,
-    "yarn-debug.log*": true,
-    "**/yarn.lock": true,
-    "yarn-error.log*": true
+    // "**/.gitignore": false,
+    // "**/.eslintrc": true,
+    // "**/.eslintignore": true,
+    // "**/.prettierignore": true,
+    // "**/postcss.config.js": true,
+    // "**/.babelrc": true,
+    // "**/.bowerrc": true,
+    // "**/.jest": true,
+    // "**/webpack.config*": true,
+    // "logs": true,
+    // "*.log": true,
+    // "npm-debug.log*": true,
+    // "yarn-debug.log*": true,
+    // "**/yarn.lock": true,
+    // "yarn-error.log*": true
   },
 
   // Update icons in the vscode file explorer

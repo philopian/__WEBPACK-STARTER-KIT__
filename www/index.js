@@ -1,10 +1,16 @@
+import "./sass/global.scss";
 import React from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
 import Root from "./react/Root.jsx";
-import "./sass/global.scss";
+import store from "./react/store";
 
-console.log("[webpack is setup!]");
+const App = () => (
+  <Provider store={store}>
+    <Root />
+  </Provider>
+);
 
-const node = document.getElementById("react");
-render(<Root />, node);
+// Add React to the page
+ReactDOM.render(<App />, document.getElementById("react")); // eslint-disable-line

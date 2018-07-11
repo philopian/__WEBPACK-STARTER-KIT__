@@ -13,8 +13,8 @@ setConsoleOptions({
 
 const Info = {
   componentSection: "Components",
-  title: "HiThere",
-  about: "",
+  title: "HelloComponent",
+  about: "this is a a simple component",
   props: {
     message: "message passed",
     handleClick: action(e => {

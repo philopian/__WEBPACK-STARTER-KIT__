@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700");
+
+$color-blue: rgb(35, 122, 191);
+$color-trans-blue: rgba(50, 80, 179, 0.6);
+$color-green: rgb(20, 254, 183);
+
 body,
 window {
   margin: 0px;
   padding: 0px;
-  background-color: rgb(35, 122, 191);
-  font-family: 'Roboto', sans-serif;
+  background-color: $color-green;
+  font-family: "Roboto", sans-serif;
 }
 
 #welcome-message {
