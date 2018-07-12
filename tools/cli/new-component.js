@@ -20,7 +20,8 @@ const cmdPrompt = () => {
             input: val,
             titleCase:
               val.indexOf(" ") > -1
-                ? _.startCase(_.toLower(val))
+                ? _
+                    .startCase(_.toLower(val))
                     .split(" ")
                     .join("")
                 : _.startCase(val).replace(" ", ""),
@@ -240,25 +241,40 @@ const buildTest = (opts, paths) => {
   const filepath = path.join(paths.newComponentDir, "test.js");
   const fileName = "test.js";
   const fileContents = `import React from "react";
-import { configure, shallow, mount, render } from "enzyme";
+import Enzyme, { configure, shallow, mount, render } from "enzyme";
 import renderer from "react-test-renderer";
-import "raf/polyfill";
 import Adapter from "enzyme-adapter-react-16";
 import Component from "./index.js";
 
-describe("${opts.componentName.titleCase} (Snapshot)", () => {
-  it("${opts.componentName.titleCase} renders without crashing", () => {
+Enzyme.configure({ adapter: new Adapter() });
+
+/**
+ * ENZYME DOCS: http://airbnb.io/enzyme/docs/guides/jest.html
+ * JEST EXPECT DOCS: https://jestjs.io/docs/en/expect.html
+ *
+ *
+ * https://github.com/facebook/jest/tree/master/examples
+ * https://www.youtube.com/watch?v=8Ww2QBVIw0I&feature=youtu.be
+ * https://hackernoon.com/testing-react-components-with-jest-and-enzyme-41d592c174f
+ *
+ */
+
+// Test the component
+describe("${opts.componentName.titleCase}  (Snapshot)", () => {
+  it("${opts.componentName.titleCase}  renders without crashing", () => {
     const component = renderer.create(<Component />);
     const json = component.toJSON();
     expect(json).toMatchSnapshot();
   });
 });
 
+// Test the logic
 describe("Addition", () => {
   it("knows that 2 and 2 make 4", () => {
     expect(2 + 2).toBe(4);
   });
-});`;
+});
+`;
   makeFile(filepath, fileContents, fileName);
 };
 
