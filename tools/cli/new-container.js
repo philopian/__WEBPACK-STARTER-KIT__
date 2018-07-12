@@ -145,9 +145,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Wrapper } from "./styles.js";
 
-// import { aa } from "../../actions/aaAA";
+// import { exampleMethod } from "../../actions/some-reducer";
 
-class ${opts.componentName.titleCase} extends Component {
+export class ${opts.componentName.titleCase} extends Component {
   state = {
     yy: ""
   };
@@ -163,14 +163,14 @@ class ${opts.componentName.titleCase} extends Component {
 }
 
 ${opts.componentName.titleCase}.propTypes = {
-  // xx: PropTypes.string.isRequired,
-  // aa: PropTypes.func.isRequired,
+  // exampleProp: PropTypes.string.isRequired,
+  // exampleMethod: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
-  // xx: state.xx,
+  // exampleProp: state.exampleProp,
 });
 const mapDispatchToProps = dispatch => ({
-  // aa: () => dispatch(aa())
+  // exampleMethod: () => dispatch(exampleMethod())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(${
     opts.componentName.titleCase
@@ -250,25 +250,47 @@ const buildTest = (opts, paths) => {
   const filepath = path.join(paths.newComponentDir, "test.js");
   const fileName = "test.js";
   const fileContents = `import React from "react";
-import { configure, shallow, mount, render } from "enzyme";
+import Enzyme, { configure, shallow, mount, render } from "enzyme";
 import renderer from "react-test-renderer";
-import "raf/polyfill";
 import Adapter from "enzyme-adapter-react-16";
-import Component from "./index.js";
+import { ${opts.componentName.titleCase} as Component } from "./${
+    opts.componentName.titleCase
+  }.jsx";
+
+Enzyme.configure({ adapter: new Adapter() });
+
+const mockLoginfn = jest.fn();
+const props = {
+  exampleProp: "......",
+  exampleMethod: mockLoginfn
+};
 
 describe("${opts.componentName.titleCase} (Snapshot)", () => {
   it("${opts.componentName.titleCase} renders without crashing", () => {
-    const component = renderer.create(<Component />);
+    const mockLoginfn = jest.fn();
+    const component = renderer.create(<Component {...props} />);
     const json = component.toJSON();
     expect(json).toMatchSnapshot();
   });
 });
 
+describe("Component", () => {
+  let component;
+  const mockLoginfn = jest.fn();
+  beforeEach(() => {
+    component = shallow(<Component {...props} />);
+  });
+
+  // ...tests here...
+});
+
+// Logic
 describe("Addition", () => {
   it("knows that 2 and 2 make 4", () => {
     expect(2 + 2).toBe(4);
   });
-});`;
+});
+`;
   makeFile(filepath, fileContents, fileName);
 };
 
