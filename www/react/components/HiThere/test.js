@@ -19,6 +19,7 @@ Enzyme.configure({ adapter: new Adapter() });
  *
  */
 
+// Test the Component
 describe("HiThere (Snapshot)", () => {
   it("HiThere renders without crashing", () => {
     const component = renderer.create(<Component />);
@@ -30,26 +31,40 @@ describe("HiThere (Snapshot)", () => {
 describe("Whole component", () => {
   it("Make sure the props are being passing thru to the component", () => {
     const component = shallow(<Component message="hello jest" />);
-    expect(component.find(".props-message").text()).toEqual("hello jest");
+    const actual = component.find(".props-message").text();
+    const expected = "hello jest";
+    expect(actual).toEqual(expected);
   });
+
   it("initial state", () => {
     const component = shallow(<Component />);
-    const _this = component.instance();
-    expect(_this.state).toEqual({
+    const instance = component.instance();
+    const actual = instance.state;
+    const expected = {
       username: "",
       clickCount: 0,
       clickMessage: "",
       parentMessage: ""
-    });
-    _this.setState({ clickMessage: "updated with jest!" });
-    expect(_this.state.clickMessage).toEqual("updated with jest!");
+    };
+    expect(actual).toEqual(expected);
+  });
+
+  it("state should change setState is fired", () => {
+    const component = shallow(<Component />);
+    const instance = component.instance();
+    instance.setState({ clickMessage: "updated with jest!" });
+    const actual = instance.state.clickMessage;
+    const expected = "updated with jest!";
+    expect(actual).toEqual(expected);
   });
 });
 
 describe("Local input section", () => {
   it("H1 should have the text hello there", () => {
     const component = shallow(<Component message="hello jest" />);
-    expect(component.find("h1").text()).toEqual("hi there");
+    const actual = component.find("h1").text();
+    const expected = "hi there";
+    expect(actual).toEqual(expected);
   });
 
   it("Local message should change after click", () => {
@@ -59,8 +74,9 @@ describe("Local input section", () => {
     component.find(".username").simulate("change", changeValue);
     expect(component.find(".click-message").text()).toEqual("");
     component.find(".local-message button").simulate("click");
-    const EXPECT = `Hello ${USERNAME}, you just clicked a button!`;
-    expect(component.find(".click-message").text()).toEqual(EXPECT);
+    const actual = component.find(".click-message").text();
+    const expected = `Hello ${USERNAME}, you just clicked a button!`;
+    expect(actual).toEqual(expected);
   });
 
   it("When the input changes the state should change", () => {
@@ -69,26 +85,37 @@ describe("Local input section", () => {
     component
       .find(".username")
       .simulate("change", { target: { value: NEW_VALUE } });
-    const _this = component.instance();
-    expect(_this.state.username).not.toEqual("llll");
-    expect(_this.state.username).toEqual(NEW_VALUE);
+    const instance = component.instance();
+    const actual = instance.state.username;
+    const notExpected = "llll";
+    const expected = NEW_VALUE;
+    expect(actual).not.toEqual(notExpected);
+    expect(actual).toEqual(expected);
   });
 });
 
 describe("Things passed to parent", () => {
   it("Props Method gets called", () => {
-    const spy = jest.fn();
-    // Render the component
+    const spy = jest.fn(); // spy are "fake" function that let's to track metrics
     const component = shallow(<Component handleClickForParent={spy} />);
-
-    // Button click should change the click-message
     component.find(".parent-message button").simulate("click");
     component.find(".parent-message button").simulate("click");
-
     expect(spy).toBeCalled();
     expect(spy).toHaveBeenCalled();
-    expect(spy.mock.calls.length).toEqual(2);
+    const actual = spy.mock.calls.length;
+    const expected = 2;
+    expect(actual).toEqual(expected);
   });
 });
 
-// spy are "fake" function that let's to track metrics
+// Test the logic
+describe("Class Methods", () => {
+  it("calcSum()", () => {
+    const component = renderer.create(<Component />);
+    const x1 = 5;
+    const x2 = 55;
+    const actual = component.getInstance().calcSum(x1, x2);
+    const expected = x1 + x2;
+    expect(actual).toEqual(expected);
+  });
+});

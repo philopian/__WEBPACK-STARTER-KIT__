@@ -17,6 +17,10 @@ class HiThere extends Component {
     });
   };
 
+  calcSum = (a, b) => {
+    return a + b;
+  };
+
   handleUsernameInputChange = e => {
     this.setState({ username: e.target.value });
   };

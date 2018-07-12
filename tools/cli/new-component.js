@@ -271,7 +271,9 @@ describe("${opts.componentName.titleCase}  (Snapshot)", () => {
 // Test the logic
 describe("Addition", () => {
   it("knows that 2 and 2 make 4", () => {
-    expect(2 + 2).toBe(4);
+    const actual = 2 + 2;
+    const expected = 4;
+    expect(actual).toEqual(expected);
   });
 });
 `;
