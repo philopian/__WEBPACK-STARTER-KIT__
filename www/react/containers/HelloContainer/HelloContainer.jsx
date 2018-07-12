@@ -6,7 +6,7 @@ import { Wrapper } from "./styles.js";
 import HelloComponent from "../../components/HelloComponent";
 import { fetchSampleData } from "../../actions/hello.js";
 
-class HelloContainer extends Component {
+export class HelloContainer extends Component {
   state = {
     yy: ""
   };
