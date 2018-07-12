@@ -36,6 +36,7 @@ export class HelloContainer extends Component {
 
 HelloContainer.propTypes = {
   hello: PropTypes.string,
+  sampleData: PropTypes.string,
   fetchSampleData: PropTypes.func
 };
 const mapStateToProps = state => ({

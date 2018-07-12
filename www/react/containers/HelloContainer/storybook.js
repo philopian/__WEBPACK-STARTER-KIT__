@@ -4,13 +4,7 @@ import { withInfo } from "@storybook/addon-info";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import { setConsoleOptions } from "@storybook/addon-console";
 
-const { Provider } = require("react-redux");
-const { createStore } = require("redux");
-// const reducers = require("../../reducers").default;
-// const store = createStore(reducers);
-
 import React from "react";
-// import Component from "./index.js";
 import { HelloContainer as Component } from "./HelloContainer.jsx";
 
 setConsoleOptions({
@@ -22,8 +16,9 @@ const Info = {
   title: "HelloContainer",
   about: "this is a simple example container",
   mockProps: {
-    // xx: "Hello Container!",
-    // aa: action("Action Clicked")
+    hello: "welcome user",
+    sampleData: "a little sample data for you",
+    fetchSampleData: () => action("fetchSampleData")
   }
 };
 
