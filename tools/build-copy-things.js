@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const config = require("../appseed.config");
 const copydir = require("copy-dir");
+const chalk = require("chalk");
 
 const APP_DIR = config.appRoot;
 const PROD_DIR = config.deployRoot;
@@ -16,6 +17,7 @@ const toAssetsFolder = path.join(WWW_PROD_PATH, "assets");
 if (fs.existsSync(fromAssetsFolder)) {
   fs.mkdirSync(toAssetsFolder);
   copydir.sync(fromAssetsFolder, toAssetsFolder);
+  console.log(chalk.blue("--copied the ./assets folder to the prod folder"));
 }
 
 // "./www/data" folder
@@ -24,6 +26,7 @@ const toFolder = path.join(WWW_PROD_PATH, "data");
 if (fs.existsSync(fromFolder)) {
   fs.mkdirSync(toFolder);
   copydir.sync(fromFolder, toFolder);
+  console.log(chalk.blue("[--copied the ./data folder to the prod folder"));
 }
 
 // "./www/favicon"
@@ -42,6 +45,7 @@ if (fs.existsSync(fromFavPath)) {
     favTo,
     { end: false }
   );
+  console.log(chalk.blue("--copied the favicon to the prod folder"));
 }
 
 // Copy and filter package.json file
@@ -59,7 +63,7 @@ if (fs.existsSync(packageJson)) {
     const regexRemoveNpmScripts = /"scripts": {([\s\S]*?)},\n /g;
     const prodScripts = `"scripts": {
       "prestart": "npm i",
-      "start": "NODE_ENV=production node server"
+      "start": "node server"
     },
     `;
     packageJsonContents = packageJsonContents.replace(
@@ -74,7 +78,7 @@ if (fs.existsSync(packageJson)) {
     // write to prod
     const packageJson = path.join(PROD_DIR, "package.json");
     fs.writeFile(packageJson, packageJsonContents, err => {
-      console.log("[copied packages.json]");
+      console.log(chalk.blue("--copied packages.json to the prod folder"));
     });
   });
 }
@@ -84,15 +88,18 @@ const templates = require("./templates");
 if (fs.existsSync(SERVER_DEV_PATH)) {
   // copy the server file
   copydir.sync(SERVER_DEV_PATH, SERVER_PROD_PATH);
+  console.log(chalk.blue("--copied the ./server to the prod folder"));
 
   const pathName = path.join(PROD_DIR, "web.config");
   fs.writeFile(pathName, templates.webConfig(), "utf8", err => {});
+  console.log(chalk.blue("--created web.config file in the prod folder"));
 
   // build
 } else {
   // webconfig in the root of the DEPLOY folder
   const pathName = path.join(PROD_DIR, "web.config");
   fs.writeFile(pathName, templates.spaWebConfig(), "utf8", err => {});
+  console.log(chalk.blue("--created web.config file in the prod folder]"));
 }
 
 // Copy appseed.config
@@ -102,6 +109,6 @@ if (fs.existsSync(appseedConfigPath)) {
   let x = fs.readFileSync(appseedConfigPath, "utf-8");
   x = x.replace("const REST_API_PORT = 1234;", "const REST_API_PORT = 8080;");
   fs.writeFile(appseedProdPath, x, err => {
-    console.log("[copied packages.json]");
+    console.log(chalk.blue("--copied appseed.config.js to the prod folder"));
   });
 }

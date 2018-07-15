@@ -1,8 +1,8 @@
-const path = require('path');
-const rimraf = require('rimraf');
-const config = require('../appseed.config');
+const chalk = require("chalk");
+const rimraf = require("rimraf");
+const config = require("../appseed.config");
 
 // Cleanup
 rimraf(config.deployRoot, function() {
-  console.log('clean the ./DEPLOY directory');
+  console.log(chalk.blue("--cleaned the ./DEPLOY directory"));
 });
