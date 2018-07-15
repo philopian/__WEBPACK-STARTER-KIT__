@@ -2,8 +2,6 @@ const path = require('path');
 const config = require('./appseed.config');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const extractSASS = new ExtractTextPlugin('code/app.css');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -11,7 +9,7 @@ module.exports = {
 
   // IN/OUT files
   entry: [
-    require.resolve('babel-polyfill'),
+    // require.resolve('babel-polyfill'),
     path.resolve(__dirname, 'www')
   ],
   output: {
@@ -46,23 +44,15 @@ module.exports = {
         minifyJS: true,
         minifyCSS: true
       },
-      inject: false
+      inject: true
     }),
-    // extractSASS
   ],
 
   // LOADERS
   module: {
     rules: [
       { test: /\.html$/, use: [{ loader: 'html-loader', options: { minimize: true }, }], },
-
-
-      {test: /\.(css|scss)$/,use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']},
-
-
-
-
-      // { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader','sass-loader'], },
+      { test: /\.(css|scss)$/,use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']},
       { test: /\.(js|jsx)$/,include: config.webRoot,loader: "babel-loader",options: {babelrc: false,presets: ["babel-preset-env","babel-preset-react","babel-preset-stage-0"]}},
       { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[name].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'file-loader' }] },
