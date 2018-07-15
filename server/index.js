@@ -67,9 +67,9 @@ api.all("/*", apiRoute.routeDoesNotExist); // Any other /api/* route gets this m
 
 /******** All other routes redirect to the SPA ********/
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(config.paths.webRoot)); // Serve all the files as static
+  app.use(express.static(config.webRoot)); // Serve all the files as static
   app.all("/*", (req, res) => {
-    const indexHtml = path.join(config.paths.webRoot, "index.html");
+    const indexHtml = path.join(config.webRoot, "index.html");
     res.status(200).sendFile(indexHtml);
   });
 }

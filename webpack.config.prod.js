@@ -2,8 +2,9 @@ const path = require('path');
 const config = require('./appseed.config');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSASS = new ExtractTextPlugin('code/app.css');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const extractSASS = new ExtractTextPlugin('code/app.css');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "production",
@@ -14,7 +15,7 @@ module.exports = {
     path.resolve(__dirname, 'www')
   ],
   output: {
-    path: path.resolve(__dirname, config.distFileName),
+    path: path.join(config.deployRoot, "www"),
     filename: 'bundle.js'
   },
 
@@ -29,6 +30,9 @@ module.exports = {
   // PLUGINS
   plugins: [
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new MiniCssExtractPlugin({
+      filename: "/code/app.css"
+    }),
     new HtmlWebpackPlugin({
       template: 'www/index.html',
       minify: {
@@ -44,16 +48,23 @@ module.exports = {
       },
       inject: false
     }),
-    extractSASS
+    // extractSASS
   ],
 
   // LOADERS
   module: {
     rules: [
       { test: /\.html$/, use: [{ loader: 'html-loader', options: { minimize: true }, }], },
-      { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader','sass-loader'], },
-      { test: /\.(js|jsx)$/,include: config.webRoot,loader: require.resolve("babel-loader"),options: {babelrc: false,presets: [require("babel-preset-env"),require("babel-preset-react"),require("babel-preset-stage-0")]}},
-      { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[path][name].[ext]' },
+
+
+      {test: /\.(css|scss)$/,use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']},
+
+
+
+
+      // { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader','sass-loader'], },
+      { test: /\.(js|jsx)$/,include: config.webRoot,loader: "babel-loader",options: {babelrc: false,presets: ["babel-preset-env","babel-preset-react","babel-preset-stage-0"]}},
+      { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[name].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'file-loader' }] },
       { test: /\.(woff|woff2)$/, use: [{ loader: 'url-loader?prefix=font/&limit=5000' }] },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'url-loader?limit=10000&mimetype=application/octet-stream' }] },

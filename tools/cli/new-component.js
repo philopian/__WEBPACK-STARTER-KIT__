@@ -212,7 +212,8 @@ const Info = {
 
 storiesOf(Info.componentSection, module)
   .addDecorator(withKnobs)
-  .add(Info.title, withInfo(Info.about)(() => <Component {...Info.props} />));`;
+  .add(Info.title, withInfo(Info.about)(() => <Component {...Info.props} />));
+`;
   makeFile(filepath, fileContents, fileName);
 };
 

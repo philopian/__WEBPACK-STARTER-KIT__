@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 const mockLoginfn = jest.fn();
 const props = {
   hello: "......",
-  sampleData: "......",
+  sampleData: {},
   fetchSampleData: mockLoginfn
 };
 
