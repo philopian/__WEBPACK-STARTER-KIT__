@@ -1,4 +1,4 @@
-# StarterKit
+# AppSeed StarterKit
 
 - Dev/Test/Build web application with live-reloading on file save
 - Scafold additional react/redux features
@@ -50,6 +50,15 @@
     $ npm run build -s
   or
     $ yarn build
+  ```
+- Since we are defining the NODE_ENV in Azure we don't have to append a node environment on the server
+- If you want to run this locally make sure you run
+  ```
+    $ cd DEPLOY
+    $ NODE_ENV=production npm start
+  or
+    $ cd DEPLOY
+    $ NODE_ENV=production yarn start
   ```
 
 ## Simple CLI to add scafold new features

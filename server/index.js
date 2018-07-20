@@ -9,6 +9,7 @@ const winston = require("winston");
 
 const config = require("../appseed.config.js");
 const apiRoute = require("./api");
+const printMessage = require("./tools/print-message");
 
 const PORT = process.env.PORT || config.portApi;
 const app = express();
@@ -76,6 +77,6 @@ if (process.env.NODE_ENV === "production") {
 
 /******** Listen on a port	*****************************/
 app.listen(PORT, () => {
-  console.log(chalk.bgBlue.bold(`[NODE_ENV] "${process.env.NODE_ENV}"`));
-  console.log(chalk.blue(`[REST Server]: http://localhost:${PORT}/api/`));
+  printMessage("NODE_ENV", process.env.NODE_ENV);
+  printMessage("REST Server", `http://localhost:${PORT}/api/`);
 });

@@ -1,7 +1,8 @@
 import config from "../appseed.config";
 const open = require("open");
+const printMessage = require("./print-message");
 
-console.log("..opening the browser");
+printMessage("opening", "your default browser");
 
 // Open the browser to view the build
 setTimeout(() => {
