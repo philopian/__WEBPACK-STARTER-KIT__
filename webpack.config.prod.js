@@ -14,7 +14,7 @@ module.exports = {
   ],
   output: {
     path: path.join(config.deployRoot, "www"),
-    filename: 'bundle.js'
+    filename: 'code/bundle.js'
   },
 
   // GENERAL STUFF
@@ -53,7 +53,7 @@ module.exports = {
     rules: [
       { test: /\.html$/, use: [{ loader: 'html-loader', options: { minimize: true }, }], },
       { test: /\.(css|scss)$/,use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']},
-      { test: /\.(js|jsx)$/,include: config.webRoot,loader: "babel-loader",options: {babelrc: false,presets: ["babel-preset-env","babel-preset-react","babel-preset-stage-0"]}},
+      { test: /\.(js|jsx)$/,include: config.webRoot,loader: "babel-loader",options: {babelrc: false,presets: ["babel-preset-env","babel-preset-stage-0","babel-preset-react"]}},
       { test: /\.(jpg|jpeg|png|svg|gif)$/, loader: 'file-loader?name=[name].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: [{ loader: 'file-loader' }] },
       { test: /\.(woff|woff2)$/, use: [{ loader: 'url-loader?prefix=font/&limit=5000' }] },

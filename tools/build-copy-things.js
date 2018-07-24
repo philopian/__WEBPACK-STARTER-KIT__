@@ -134,6 +134,18 @@ const appseedConfigFile = () => {
   }
 };
 
+// Copy appseed.config
+const deployIndexRemoveScript = () => {
+  const indexHtmlPath = path.join(PROD_DIR, "www/index.html");
+  if (fs.existsSync(indexHtmlPath)) {
+    let x = fs.readFileSync(indexHtmlPath, "utf-8");
+    x = x.replace(`<script src="bundle.js"></script>`, "");
+    fs.writeFile(indexHtmlPath, x, err => {
+      printMessage("Cleanup", "Removed the redundant bundle script tag");
+    });
+  }
+};
+
 /**
  * Fire off the functions
  *
@@ -144,3 +156,4 @@ copyFavicon();
 packageJsonFile();
 serverFiles();
 appseedConfigFile();
+deployIndexRemoveScript();
